@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+    	
+    <appender name="import_roll" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/var/log/umovme/watcher_import.log" />
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />        
+		<param name="DatePattern" value="'.'yyyy-MM" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %m%n" />
+		</layout>
+	</appender>
+
+    <appender name="export_roll" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/var/log/umovme/watcher_export.log" />
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />        
+		<param name="DatePattern" value="'.'yyyy-MM" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %m%n" />
+		</layout>
+	</appender>
+
+    <appender name="sendReportScheduleExecution_roll" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/var/log/umovme/watcher_sendReportScheduleExecution.log" />
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />        
+		<param name="DatePattern" value="'.'yyyy-MM" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="finalizeRunningSchedule_roll" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/var/log/umovme/watcher_finalizeRunningSchedule.log" />
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />        
+		<param name="DatePattern" value="'.'yyyy-MM" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="updateappversion_roll" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/var/log/umovme/watcher_updateappversion.log" />
+        <param name="append" value="true" />
+        <param name="encoding" value="UTF-8" />        
+		<param name="DatePattern" value="'.'yyyy-MM" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %m%n" />
+		</layout>
+	</appender>
+
+    <category name="importAction">
+		<priority value="INFO" />
+		<appender-ref ref="import_roll" />
+    </category>
+
+    <category name="exportAction">
+		<priority value="INFO" />
+		<appender-ref ref="export_roll" />
+    </category>
+
+    <category name="sendReportScheduleExecutionAction">
+		<priority value="INFO" />
+		<appender-ref ref="sendReportScheduleExecution_roll" />
+    </category>
+    
+    <category name="finalizeRunningScheduleAction">
+		<priority value="INFO" />
+		<appender-ref ref="finalizeRunningSchedule_roll" />
+    </category>
+    
+    <category name="updateappversion">
+		<priority value="INFO" />
+		<appender-ref ref="updateappversion_roll" />
+    </category>
+    
+    <!--  category name="org.hibernate">
+		<priority value="ERROR" />
+		<appender-ref ref="export_roll" />
+	</category
+	
+    <root>
+		<priority value ="debug" />
+		<appender-ref ref="stdout" />
+	</root-->
+	
+	<logger name="org.hibernate">
+		<level value="trace" />
+	</logger>
+     
+    
+</log4j:configuration>
